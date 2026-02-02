@@ -168,5 +168,28 @@
   $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
 </script>
 </body>
+ <script>
+  document.getElementById("btn").addEventListener("click", searchFix);
+
+  function searchFix() {
+    const query = document.getElementById("q").value.trim();
+    if (!query) return;
+
+    const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(
+      "site:itfixlab.co.in " + query
+    )}`;
+
+    window.open(googleSearch, "_blank");
+  }
+
+  // Optional: allow Enter key
+  document.getElementById("q").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      searchFix();
+    }
+  });
+</script>
+ 
 </html>
+
 
