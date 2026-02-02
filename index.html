@@ -137,8 +137,10 @@
         <p class="muted">${escapeHtml(fix.what)}</p>
         <h3 style="margin:12px 0 6px;">🛠️ Quick Fixes (Try in order)</h3>
         <ol class="list">${li}</ol>
-        ${fix.fullUrl ? `<a class="btn" href="${fix.fullUrl}" target="_blank" rel="noopener">👉 View Full Step-by-Step Fix</a>` : ""}
-      </div>
+        <a class="btn" href="#" onclick="openFullFix('${query}'); return false;">
+        👉 View Full Step-by-Step Fix
+          </a>
+        </div>
     `;
   }
 
@@ -168,28 +170,21 @@
   $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
 </script>
 </body>
- <script>
-  document.getElementById("btn").addEventListener("click", searchFix);
+<script>
+  function openFullFix(query) {
+  if (!query) return;
 
-  function searchFix() {
-    const query = document.getElementById("q").value.trim();
-    if (!query) return;
+  const url =
+    "https://www.google.com/search?q=" +
+    encodeURIComponent("site:itfixlab.co.in " + query);
 
-    const googleSearch = `https://www.google.com/search?q=${encodeURIComponent(
-      "site:itfixlab.co.in " + query
-    )}`;
+  window.open(url, "_blank", "noopener");
+}
 
-    window.open(googleSearch, "_blank");
-  }
-
-  // Optional: allow Enter key
-  document.getElementById("q").addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      searchFix();
-    }
-  });
 </script>
+
  
 </html>
+
 
 
