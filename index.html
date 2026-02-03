@@ -16,6 +16,18 @@
     input { flex:1; min-width: 220px; padding: 12px 12px; border-radius: 12px; border:1px solid #2a3a62; background:#0f1730; color:#e8eefc; }
     button { padding: 12px 14px; border-radius: 12px; border:1px solid #2a3a62; background:#2b5cff; color:white; cursor:pointer; }
     button:hover { opacity:.92; }
+    <div style="margin-top:12px; display:flex; gap:16px; flex-wrap:wrap;">
+    <label class="muted">
+    <input type="checkbox" id="quickOnly" checked />
+    Show quick fixes only
+    </label>
+
+    <label class="muted">
+    <input type="checkbox" id="openNewTab" checked />
+    Open full fix in new tab
+    </label>
+    </div>
+
     .chips { display:flex; gap:8px; flex-wrap: wrap; margin-top: 10px; }
     .chip { padding:8px 10px; border-radius: 999px; border:1px solid #2a3a62; background:#0f1730; cursor:pointer; color:#cfe0ff; font-size: 13px; }
     .muted { color:#b7c6ee; font-size: 14px; }
@@ -171,20 +183,26 @@
 </script>
 </body>
 <script>
-  function openFullFix(query) {
+function openFullFix(query) {
   if (!query) return;
+
+  const openNewTab = document.getElementById("openNewTab").checked;
 
   const url =
     "https://www.google.com/search?q=" +
     encodeURIComponent("site:itfixlab.co.in " + query);
 
-  window.open(url, "_blank", "noopener");
+  if (openNewTab) {
+    window.open(url, "_blank", "noopener");
+  } else {
+    window.location.href = url;
+  }
 }
-
 </script>
 
  
 </html>
+
 
 
 
