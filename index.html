@@ -80,99 +80,241 @@
 <script>
   // ✅ YOUR DATABASE (paste all your posts here)
   const FIXES = [
-    {
-      id: "fbd4fb19",
-      title: "Windows Update Taking Forever on SSD – Why & How to Fix (2025 Guide)",
-      summary: "Fix Windows Update stuck, slow, or looping on SSD.",
-      keywords: [
-        "windows update taking forever",
-        "windows update slow ssd",
-        "windows update stuck",
-        "windows update stuck 0",
-        "windows update stuck 100"
-      ],
-      quickFixes: [
-        "Restart the PC once, then run **Windows Update Troubleshooter**.",
-        "Reset update cache: stop Windows Update services → rename **SoftwareDistribution** + **catroot2** → start services.",
-        "Run **SFC** + **DISM** (RestoreHealth) and ensure at least **15–20 GB** free space."
-      ],
-      fullUrl: "https://www.itfixlab.co.in/2026/02/windows-update-taking-forever-on-ssd.html"
-    },
-    {
-      id: "dbf8c1a5",
-      title: "How to Install Fonts on Windows 10/11 (Step-by-Step)",
-      summary: "Add new fonts to Windows and make them show up in apps.",
-      keywords: [
-        "install fonts windows",
-        "how to install fonts windows 11",
-        "how to install fonts windows 10",
-        "add fonts windows 11",
-        "ttf otf install"
-      ],
-      quickFixes: [
-        "Download the font file (.ttf/.otf) and extract it if it’s in a ZIP.",
-        "Right-click the font → **Install** (or **Install for all users**).",
-        "Restart the app (Word/Photoshop/etc.). If needed, reboot Windows."
-      ],
-      fullUrl: "https://www.itfixlab.co.in/2026/02/how-to-install-fonts-on-windows.html"
-    },
-    {
-      id: "c9f6c9b2",
-      title: "Windows Update Stuck at 0% or 100%? Fix It Fast (2025)",
-      summary: "Fix Windows Update stuck, slow, or looping on SSD.",
-      keywords: [
-        "windows update stuck 0",
-        "windows update stuck 100",
-        "windows update stuck",
-        "update stuck 0",
-        "update stuck 100"
-      ],
-      quickFixes: [
-        "Restart the PC once, then run **Windows Update Troubleshooter**.",
-        "Reset update cache: stop Windows Update services → rename **SoftwareDistribution** + **catroot2** → start services.",
-        "Run **SFC** + **DISM** (RestoreHealth) and ensure at least **15–20 GB** free space."
-      ],
-      fullUrl: "https://www.itfixlab.co.in/2026/01/windows-update-stuck-0-or-100-fix.html"
-    },
-    {
-      id: "6f1a2bb7",
-      title: "Fix Windows Update Error 0x800f081f (2025 Working Fix)",
-      summary: "Resolve missing source files / component store issues that block updates.",
-      keywords: [
-        "0x800f081f",
-        "windows update error 0x800f081f",
-        "the source files could not be found",
-        "dism source files could not be found"
-      ],
-      quickFixes: [
-        "Run **DISM /Online /Cleanup-Image /RestoreHealth** (as Admin).",
-        "If DISM fails, mount a matching Windows ISO and run DISM with **/Source:wim:** (or use **Windows Update** as source).",
-        "Reset Windows Update components (SoftwareDistribution + catroot2) and retry the update."
-      ],
-      fullUrl: "https://www.itfixlab.co.in/2026/01/fix-windows-update-error-0x800f081f.html"
-    },
-    {
-      id: "9c2d2e58",
-      title: "KB5034441 Error 0x80070643 – Complete Fix (2025)",
-      summary: "Fix common Windows Update install failures often tied to .NET or WinRE updates.",
-      keywords: [
-        "0x80070643",
-        "windows update error 0x80070643",
-        "kb5034441 0x80070643",
-        "kb5034441 error 0x80070643"
-      ],
-      quickFixes: [
-        "Run Windows Update Troubleshooter and reboot once.",
-        "Repair .NET + component store: run **DISM RestoreHealth** then **SFC /scannow**.",
-        "If it’s **KB5034441/WinRE** related, fix the Recovery partition size, then re-run Windows Update."
-      ],
-      fullUrl: "https://www.itfixlab.co.in/2026/01/kb5034441-error-0x80070643-fix.html"
-    }
-
-    /* ✅ PASTE THE REST OF YOUR POSTS HERE
-       Keep same format so EVERY blog has 3 quickFixes
-    */
-  ];
+  {
+    "id": "70bcd781",
+    "publishDate": "Mon, 02 Feb 2026 04:38:00 +0000",
+    "title": "Windows Update Taking Forever on SSD – Why & How to Fix (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Restart PC + run Windows Update Troubleshooter",
+      "Reset update cache",
+      "Run DISM RestoreHealth + SFC and check 15–20GB free space"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/02/windows-update-taking-forever-on-ssd.html"
+  },
+  {
+    "id": "ab8b68c2",
+    "publishDate": "Mon, 02 Feb 2026 04:13:00 +0000",
+    "title": "How to Install Fonts on Windows (Windows 10 & 11) – Easy Guide",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Download the font file (.TTF or .OTF) and extract it if it’s in a ZIP file.",
+      "Right-click the font file and select Install (or Install for all users for system-wide use).",
+      "Restart the application (Word, Photoshop, browser, etc.) or reboot Windows if the font doesn’t appear."
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/02/how-to-install-fonts-on-windows-windows.html"
+  },
+  {
+    "id": "d3a92f06",
+    "publishDate": "Mon, 02 Feb 2026 03:11:00 +0000",
+    "title": "Windows Update Error 0x800f081f: How to Fix “The Source Files Could Not Be Found” (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/02/windows-update-error-0x800f081f-how-to.html"
+  },
+  {
+    "id": "d0d254e9",
+    "publishDate": "Sun, 01 Feb 2026 11:38:00 +0000",
+    "title": "Windows Update Stuck at 0% or 100%? Here’s the Real Fix (Windows 10 & 11 – 2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Restart PC + run Windows Update Troubleshooter",
+      "Reset update cache",
+      "Run DISM RestoreHealth + SFC and check 15–20GB free space"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/02/windows-update-stuck-at-0-or-100-heres.html"
+  },
+  {
+    "id": "3375a8c4",
+    "publishDate": "Sat, 31 Jan 2026 02:45:00 +0000",
+    "title": "Windows Update Error 0x80070643 on Windows 10/11 – Fix It Permanently (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-error-0x80070643-on.html"
+  },
+  {
+    "id": "6ef43073",
+    "publishDate": "Fri, 30 Jan 2026 13:04:00 +0000",
+    "title": "Windows 11 24H2 Update Problems (2025): Common Issues & Complete Fix Guide",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "nan",
+      "nan",
+      "nan"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-11-24h2-update-problems-2025.html"
+  },
+  {
+    "id": "74b5d7c0",
+    "publishDate": "Fri, 30 Jan 2026 08:11:00 +0000",
+    "title": "KB5034441 WinRE Partition Too Small? How to Fix the “Recovery Partition Error” (2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/kb5034441-winre-partition-too-small-how.html"
+  },
+  {
+    "id": "7c84c0a5",
+    "publishDate": "Thu, 29 Jan 2026 16:25:00 +0000",
+    "title": "KB5034441 Not Installing After Restart? Here’s the Real Fix (Windows 10 & 11)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/kb5034441-not-installing-after-restart.html"
+  },
+  {
+    "id": "8cb5517b",
+    "publishDate": "Wed, 28 Jan 2026 09:14:00 +0000",
+    "title": "Windows Update KB5034441 Fails to Install on Windows 10 & 11 – Complete Fix (2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-kb5034441-fails-to.html"
+  },
+  {
+    "id": "ceb17331",
+    "publishDate": "Tue, 27 Jan 2026 16:30:00 +0000",
+    "title": "Windows Update KB5034441 Error 0x80070643 – Complete Fix (2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-kb5034441-error.html"
+  },
+  {
+    "id": "010ec858",
+    "publishDate": "Tue, 27 Jan 2026 05:41:00 +0000",
+    "title": "Windows Update KB5034441 Fails to Install? Here’s How to Fix It (2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-kb5034441-fails-to-install.html"
+  },
+  {
+    "id": "6800a7df",
+    "publishDate": "Tue, 27 Jan 2026 05:09:00 +0000",
+    "title": "How to Fix Windows Update Error 0x8024402f in Windows 10 & 11 (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-error-0x8024402f-fix.html"
+  },
+  {
+    "id": "5f95971b",
+    "publishDate": "Mon, 26 Jan 2026 09:17:00 +0000",
+    "title": "How to Fix Windows Update Error 0x80070005 (Access Denied) in 2025",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/blog-post_26.html"
+  },
+  {
+    "id": "8853012a",
+    "publishDate": "Fri, 23 Jan 2026 11:10:00 +0000",
+    "title": "How to Fix Windows Update Error 0x800f0922 (2025 Step-by-Step Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/blog-post.html"
+  },
+  {
+    "id": "d1ab7554",
+    "publishDate": "Thu, 22 Jan 2026 01:50:00 +0000",
+    "title": "How to Fix Windows Update Error 0x80070002 (2025 Step-by-Step Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Restart PC + run Windows Update Troubleshooter",
+      "Reset update cache",
+      "Run DISM RestoreHealth + SFC and check 15–20GB free space"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/how-to-fix-windows-update-error.html"
+  },
+  {
+    "id": "e0010444",
+    "publishDate": "Wed, 21 Jan 2026 06:37:00 +0000",
+    "title": "How to Fix Windows Update Error 0x8024402c (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-error-0x8024402c-fix.html"
+  },
+  {
+    "id": "1248d21e",
+    "publishDate": "Wed, 21 Jan 2026 06:29:00 +0000",
+    "title": "Windows Update Error 0x800f081f: Complete Step-by-Step Fix (2025)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Run DISM RestoreHealth (Admin)",
+      "Run SFC /scannow",
+      "Reset Windows Update components and retry"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-error-0x800f081f-fix.html"
+  },
+  {
+    "id": "87a8f8f7",
+    "publishDate": "Tue, 20 Jan 2026 14:04:00 +0000",
+    "title": "Windows Update Stuck at 0% or 100%? Here’s How to Fix It (2025 Guide)",
+    "summary": "Quick fix steps for this issue.",
+    "keywords": [],
+    "quickFixes": [
+      "Restart PC + run Windows Update Troubleshooter",
+      "Reset update cache",
+      "Run DISM RestoreHealth + SFC and check 15–20GB free space"
+    ],
+    "fullUrl": "https://www.itfixlab.co.in/2026/01/windows-update-stuck-0-or-100-fix.html"
+  }
+];
 
   const EXAMPLES = ["KB5034441", "0x800f081f", "Windows update stuck 0%", "0x80070643", "install fonts windows"];
 
@@ -315,4 +457,5 @@
 
 </body>
 </html>
+
 
