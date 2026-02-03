@@ -78,7 +78,6 @@
   </div>
 
 <script>
-  // ✅ YOUR DATABASE (paste all your posts here)
   const FIXES = [
   {
     "id": "70bcd781",
@@ -316,146 +315,108 @@
   }
 ];
 
-  const EXAMPLES = ["KB5034441", "0x800f081f", "Windows update stuck 0%", "0x80070643", "install fonts windows"];
-
-  const $ = (id) => document.getElementById(id);
-
-  function escapeHtml(str) {
-    return (str || "").replace(/[&<>"']/g, m => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-    }[m]));
-  }
-
-  // Minimal **bold** support for your quickFixes strings
-  function formatMiniMarkdown(text) {
-    const safe = escapeHtml(text);
-    return safe.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
-  }
-
   function normalize(s) {
-    return (s || "").toLowerCase().trim();
+    return (s || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
   }
 
-  function findBestFix(query) {
-    const q = normalize(query);
-    if (!q) return null;
+  function scoreMatch(query, fix) {
+    // Higher score = better match
+    let score = 0;
 
+    const q = normalize(query);
+    if (!q) return 0;
+
+    // 1) Direct hits in title
+    const title = normalize(fix.title);
+    if (title.includes(q)) score += 50;
+
+    // 2) Direct hits in summary
+    const summary = normalize(fix.summary);
+    if (summary.includes(q)) score += 20;
+
+    // 3) Keyword matching (best)
+    for (const kw of (fix.keywords || [])) {
+      const k = normalize(kw);
+
+      // exact match
+      if (q === k) score += 100;
+
+      // query contains keyword OR keyword contains query
+      if (q.includes(k)) score += 40;
+      if (k.includes(q)) score += 30;
+
+      // error-code friendly: remove spaces
+      const q2 = q.replace(/\s+/g, "");
+      const k2 = k.replace(/\s+/g, "");
+      if (q2 === k2) score += 80;
+      if (q2.includes(k2)) score += 25;
+      if (k2.includes(q2)) score += 15;
+    }
+
+    return score;
+  }
+
+  function search() {
+    const q = document.getElementById("q").value;
+    const query = normalize(q);
+
+    if (!query) return;
+
+    // Find best matching fix
     let best = null;
     let bestScore = 0;
 
     for (const fix of FIXES) {
-      let score = 0;
-      for (const kw of (fix.keywords || [])) {
-        const k = normalize(kw);
-        if (!k) continue;
-
-        // scoring logic
-        if (q === k) score += 20;
-        if (q.includes(k)) score += 10;
-        if (k.includes(q)) score += 4;
-      }
-      if (score > bestScore) {
-        bestScore = score;
+      const s = scoreMatch(query, fix);
+      if (s > bestScore) {
+        bestScore = s;
         best = fix;
       }
     }
 
-    return bestScore > 0 ? best : null;
-  }
-
-  function openFullFix(query, fix) {
-    const q = (query || "").trim();
-    if (!q) return;
-
-    const newTab = $("openNewTab").checked;
-    const target = newTab ? "_blank" : "_self";
-
-    // ✅ Full Fix button behavior:
-    // - If user enabled Google search: site:itfixlab.co.in query
-    // - Else use Blogger built-in search (works even without Google indexing)
-    const useGoogle = $("useGoogle").checked;
-
-    let url;
-    if (useGoogle) {
-      url = "https://www.google.com/search?q=" + encodeURIComponent("site:itfixlab.co.in " + q);
-    } else {
-      url = "https://www.itfixlab.co.in/search?q=" + encodeURIComponent(q);
-    }
-
-    // If you REALLY want to open the exact blog page when available, uncomment this:
-    // if (fix && fix.fullUrl) url = fix.fullUrl;
-
-    if (newTab) window.open(url, target, "noopener");
-    else window.location.href = url;
-  }
-
-  function renderResult(fix, query) {
-    if (!fix) {
-      return `
+    // If score too low, no confident match
+    if (!best || bestScore < 20) {
+      document.getElementById("result").innerHTML = `
         <div class="card">
-          <div class="warn"><b>No exact match found.</b></div>
-          <p class="muted">Try a code like <b>0x800f081f</b> or a short issue like <b>update stuck</b>.</p>
-          <p class="muted">You searched: <b>${escapeHtml(query)}</b></p>
+          <div class="warn">❌ No strong match found.</div>
+          <div class="muted">Try: KB5034441, 0x800f081f, "update stuck", "install fonts"</div>
         </div>
       `;
+      return;
     }
 
-    const items = (fix.quickFixes || []).slice(0, 3).map(x => `<li>${formatMiniMarkdown(x)}</li>`).join("");
-
-    const hideFull = $("quickOnly").checked;
-
-    return `
+    // Render result
+    document.getElementById("result").innerHTML = `
       <div class="card">
-        <div class="ok"><b>✅ Issue Identified</b></div>
-        <h2 style="margin:8px 0 6px;">${escapeHtml(fix.title || "Fix")}</h2>
-        <p class="muted">${escapeHtml(fix.summary || "")}</p>
+        <div class="ok">✅ Issue Identified</div>
+        <h2>${best.title}</h2>
+        <p class="muted">${best.summary}</p>
 
-        <h3 style="margin:12px 0 6px;">🛠️ Quick Fixes (Try in order)</h3>
-        <ol class="list">${items}</ol>
+        <h3>🛠 Quick Fixes (Try in order)</h3>
+        <ol class="list">
+          ${(best.quickFixes || []).map(x => `<li>${x}</li>`).join("")}
+        </ol>
 
-        ${hideFull ? "" : `
-          <a class="btn" href="#" onclick="openFullFix('${escapeHtml(query)}', '${escapeHtml(fix.id || "")}'); return false;">
-            👉 View Full Step-by-Step Fix
-          </a>
-        `}
+        ${
+          best.fullUrl
+            ? `<a class="btn" href="${best.fullUrl}" target="_blank" rel="noopener">👉 View Full Step-by-Step Fix</a>`
+            : ""
+        }
       </div>
     `;
   }
 
-  function doSearch() {
-    const query = $("q").value;
-    const fix = findBestFix(query);
-    $("result").innerHTML = renderResult(fix, query);
-  }
-
-  // expose function for onclick
-  window.openFullFix = (query, fixId) => {
-    const fix = FIXES.find(x => x.id === fixId) || null;
-    openFullFix(query, fix);
-  };
-
-  // chips
-  const exWrap = $("examples");
-  EXAMPLES.forEach(t => {
-    const b = document.createElement("div");
-    b.className = "chip";
-    b.textContent = t;
-    b.onclick = () => { $("q").value = t; doSearch(); };
-    exWrap.appendChild(b);
-  });
-
-  $("btn").addEventListener("click", doSearch);
-  $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
-
-  // re-render result instantly when toggles change
-  ["quickOnly", "openNewTab", "useGoogle"].forEach(id => {
-    $(id).addEventListener("change", () => {
-      if ($("result").innerHTML.trim()) doSearch();
-    });
+  // Optional: Press Enter to search
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") search();
   });
 </script>
-
+  
 </body>
 </html>
+
 
 
