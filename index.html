@@ -1,208 +1,230 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-site-verification" content="NGYo6cUJi_asfYQ0JyzUZRgQS4l6BQyJo2X9O0UBi88" />
+    <meta name="google-site-verification" content="NGYo6cUJi_asfYQ0JyzUZRgQS4l6BQyJo2X9O0UBi88" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>IT Fix Finder — IT Fix Lab</title>
-  <meta name="description" content="Type a Windows error code or issue and get quick fixes instantly.">
+  <title>IT Fix Finder – IT Fix Lab</title>
+  <meta name="description" content="Type a Windows error code or issue and get quick fixes instantly." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 0; background:#0b1220; color:#e8eefc; }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 28px 16px 60px; }
-    .card { background:#121a2b; border:1px solid #1d2a46; border-radius: 16px; padding: 18px; margin-top: 14px; }
-    h1 { margin: 0 0 6px; font-size: 28px; }
-    .sub { color:#b7c6ee; margin: 0 0 16px; }
-    .row { display:flex; gap:10px; flex-wrap: wrap; }
-    input { flex:1; min-width: 220px; padding: 12px 12px; border-radius: 12px; border:1px solid #2a3a62; background:#0f1730; color:#e8eefc; }
-    button { padding: 12px 14px; border-radius: 12px; border:1px solid #2a3a62; background:#2b5cff; color:white; cursor:pointer; }
-    button:hover { opacity:.92; }
-    <div style="margin-top:12px; display:flex; gap:16px; flex-wrap:wrap;">
-    <label class="muted">
-    <input type="checkbox" id="quickOnly" checked />
-    Show quick fixes only
-    </label>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      margin: 0;
+      background: #0b1220;
+      color: #e8eefc;
+    }
 
-    <label class="muted">
-    <input type="checkbox" id="openNewTab" checked />
-    Open full fix in new tab
-    </label>
-    </div>
+    .wrap {
+      max-width: 900px;
+      margin: auto;
+      padding: 28px 16px 60px;
+    }
 
-    .chips { display:flex; gap:8px; flex-wrap: wrap; margin-top: 10px; }
-    .chip { padding:8px 10px; border-radius: 999px; border:1px solid #2a3a62; background:#0f1730; cursor:pointer; color:#cfe0ff; font-size: 13px; }
-    .muted { color:#b7c6ee; font-size: 14px; }
-    .ok { color:#7dffb0; }
-    .warn { color:#ffcc66; }
-    .list { margin: 10px 0 0; padding-left: 18px; }
-    a.btn { display:inline-block; margin-top: 12px; padding: 10px 12px; border-radius: 12px; border:1px solid #2a3a62; background:#0f1730; color:#cfe0ff; text-decoration:none; }
-    a.btn:hover { opacity:.92; }
-    footer { margin-top: 18px; color:#93a6d6; font-size: 13px; display:flex; gap:10px; flex-wrap:wrap; }
-    footer a { color:#93a6d6; }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+
+    .sub {
+      color: #b7c6ee;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: #121a2b;
+      border: 1px solid #1d2a46;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #2a3a62;
+      background: #0f1730;
+      color: #e8eefc;
+    }
+
+    button {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #2a3a62;
+      background: #2b5cff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .options {
+      margin-top: 12px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .muted {
+      color: #93a6d6;
+      font-size: 14px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid #2a3a62;
+      background: #0f1730;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .ok { color: #7dffb0; }
+
+    .list {
+      margin: 10px 0;
+      padding-left: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #2a3a62;
+      background: #0f1730;
+      color: #cfe0ff;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #93a6d6;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: #93a6d6;
+      text-decoration: none;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <h1>🛠️ IT Fix Finder</h1>
+    <h1>🛠 IT Fix Finder</h1>
     <p class="sub">Type a Windows error code or issue. Get quick fixes instantly.</p>
 
+    <!-- SEARCH CARD -->
     <div class="card">
       <div class="row">
-        <input id="q" placeholder='Try: "KB5034441", "0x800f081f", "update stuck 0%"' autocomplete="off" />
-        <button id="btn">Search</button>
+        <input id="q" type="text" placeholder="Try: KB5034441, 0x800f081f, update stuck 0%" />
+        <button onclick="search()">Search</button>
       </div>
-      <div class="chips" id="examples"></div>
-      <p class="muted" style="margin-top:10px;">Tip: Keep it short (error code, KB number, or issue).</p>
+
+      <!-- CHECKBOX OPTIONS -->
+      <div class="options muted">
+        <label>
+          <input type="checkbox" id="quickOnly" checked />
+          Show quick fixes only
+        </label>
+
+        <label>
+          <input type="checkbox" id="openNewTab" checked />
+          Open full fix in new tab
+        </label>
+      </div>
+
+      <!-- EXAMPLES -->
+      <div class="chips">
+        <div class="chip" onclick="setQ('KB5034441')">KB5034441</div>
+        <div class="chip" onclick="setQ('0x800f081f')">0x800f081f</div>
+        <div class="chip" onclick="setQ('Windows update stuck 0%')">Update stuck 0%</div>
+        <div class="chip" onclick="setQ('WiFi connected no internet')">WiFi no internet</div>
+      </div>
+
+      <p class="muted">Tip: Keep it short (error code, KB number, or issue).</p>
     </div>
 
-    <div id="result"></div>
+    <!-- RESULT -->
+    <div id="result" class="card" style="display:none;">
+      <p class="ok">✔ Issue Identified</p>
+      <h3 id="title"></h3>
+      <p id="desc"></p>
+
+      <h4>🛠 Quick Fixes (Try in order)</h4>
+      <ol class="list" id="fixes"></ol>
+
+      <a id="fullFix" class="btn" target="_blank" rel="noopener">
+        👉 View Full Step-by-Step Fix
+      </a>
+    </div>
 
     <footer>
       <span>Powered by IT Fix Lab</span>
-      <a href="#" onclick="return false;">Privacy</a>
-      <a href="#" onclick="return false;">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
     </footer>
   </div>
 
-<script>
-  // 🔧 Add your fixes here. This is your "database".
-  const FIXES = [
-    {
-      keys: ["kb5034441", "5034441"],
-      title: "KB5034441 Installation Failed",
-      what: "This update often fails due to Recovery partition size issues or update component conflicts.",
-      quickFixes: [
-        "Run Windows Update Troubleshooter and restart once",
-        "Reset Windows Update components (SoftwareDistribution + catroot2)",
-        "If it still fails, follow the Recovery partition fix guide"
-      ],
-      fullUrl: "https://itfixlab.co.in/2026/01/kb5034441-fix.html"
-    },
-    {
-      keys: ["0x800f081f", "source files could not be found", "800f081f"],
-      title: "Windows Update Error 0x800f081f",
-      what: "Usually caused by missing/corrupted system files or .NET/feature installation issues.",
-      quickFixes: [
-        "Run DISM /RestoreHealth then SFC /scannow",
-        "Enable .NET Framework 3.5 (optionalfeatures)",
-        "Install the KB manually via Microsoft Update Catalog"
-      ],
-      fullUrl: "https://itfixlab.co.in/2026/02/windows-update-error-0x800f081f-fix.html"
-    },
-    {
-      keys: ["update stuck", "stuck at 0", "stuck at 100", "windows update stuck"],
-      title: "Windows Update Stuck at 0% / 100%",
-      what: "Usually caused by stuck services, corrupted cache, or low disk space.",
-      quickFixes: [
-        "Restart Windows Update + BITS services",
-        "Clear Windows Update cache (SoftwareDistribution)",
-        "Run SFC/DISM and ensure 15–20 GB free space"
-      ],
-      fullUrl: "https://itfixlab.co.in/2026/02/windows-update-stuck-fix.html"
-    }
-  ];
-
-  const EXAMPLES = ["KB5034441", "0x800f081f", "Windows update stuck 0%", "0x80070643", "WiFi connected no internet"];
-
-  const $ = (id) => document.getElementById(id);
-
-  function normalize(s) {
-    return (s || "").toLowerCase().trim();
-  }
-
-  function findFix(query) {
-    const q = normalize(query);
-    if (!q) return null;
-
-    // Score matches: direct key hit > partial inclusion
-    let best = null, bestScore = 0;
-
-    for (const item of FIXES) {
-      let score = 0;
-      for (const k of item.keys) {
-        const key = normalize(k);
-        if (q === key) score += 10;
-        if (q.includes(key)) score += 5;
-        if (key.includes(q)) score += 2;
+  <script>
+    const data = {
+      "windows update stuck": {
+        title: "Windows Update Stuck at 0% / 100%",
+        desc: "Usually caused by stuck services, corrupted cache, or low disk space.",
+        fixes: [
+          "Restart Windows Update + BITS services",
+          "Clear SoftwareDistribution folder",
+          "Run SFC/DISM and ensure 15–20 GB free space"
+        ],
+        url: "https://www.itfixlab.co.in/search?q=Windows+Update+Stuck"
       }
-      if (score > bestScore) { bestScore = score; best = item; }
+    };
+
+    function setQ(val) {
+      document.getElementById("q").value = val;
+      search();
     }
 
-    return bestScore > 0 ? best : null;
-  }
+    function search() {
+      const q = document.getElementById("q").value.toLowerCase();
+      const key = Object.keys(data).find(k => q.includes(k));
+      if (!key) return;
 
-  function renderResult(fix, query) {
-    if (!fix) {
-      return `
-        <div class="card">
-          <div class="warn"><b>No exact match found.</b></div>
-          <p class="muted">Try an error code (like <b>0x800f081f</b>) or a short issue (like <b>update stuck</b>).</p>
-          <p class="muted">You searched: <b>${escapeHtml(query)}</b></p>
-        </div>
-      `;
+      const d = data[key];
+      document.getElementById("title").innerText = d.title;
+      document.getElementById("desc").innerText = d.desc;
+
+      const fixes = document.getElementById("fixes");
+      fixes.innerHTML = "";
+      d.fixes.forEach(f => {
+        const li = document.createElement("li");
+        li.innerText = f;
+        fixes.appendChild(li);
+      });
+
+      const link = document.getElementById("fullFix");
+      link.href = d.url;
+      link.target = document.getElementById("openNewTab").checked ? "_blank" : "_self";
+
+      document.getElementById("result").style.display = "block";
     }
-
-    const li = fix.quickFixes.map(x => `<li>${escapeHtml(x)}</li>`).join("");
-    return `
-      <div class="card">
-        <div class="ok"><b>✅ Issue Identified</b></div>
-        <h2 style="margin:8px 0 6px;">${escapeHtml(fix.title)}</h2>
-        <p class="muted">${escapeHtml(fix.what)}</p>
-        <h3 style="margin:12px 0 6px;">🛠️ Quick Fixes (Try in order)</h3>
-        <ol class="list">${li}</ol>
-        <a class="btn" href="#" onclick="openFullFix('${query}'); return false;">
-        👉 View Full Step-by-Step Fix
-          </a>
-        </div>
-    `;
-  }
-
-  function escapeHtml(str) {
-    return (str || "").replace(/[&<>"']/g, m => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-    }[m]));
-  }
-
-  function doSearch() {
-    const query = $("q").value;
-    const fix = findFix(query);
-    $("result").innerHTML = renderResult(fix, query);
-  }
-
-  // examples chips
-  const exWrap = $("examples");
-  EXAMPLES.forEach(t => {
-    const b = document.createElement("div");
-    b.className = "chip";
-    b.textContent = t;
-    b.onclick = () => { $("q").value = t; doSearch(); };
-    exWrap.appendChild(b);
-  });
-
-  $("btn").addEventListener("click", doSearch);
-  $("q").addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
-</script>
+  </script>
 </body>
-<script>
-function openFullFix(query) {
-  if (!query) return;
-
-  const openNewTab = document.getElementById("openNewTab").checked;
-
-  const url =
-    "https://www.google.com/search?q=" +
-    encodeURIComponent("site:itfixlab.co.in " + query);
-
-  if (openNewTab) {
-    window.open(url, "_blank", "noopener");
-  } else {
-    window.location.href = url;
-  }
-}
-</script>
-
- 
 </html>
-
-
-
-
