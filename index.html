@@ -62,6 +62,162 @@
 <script>
   const FIXES = [
   {
+    "id": "event-41",
+    "eventId": "41",
+    "title": "Kernel-Power Critical Error",
+    "meaning": "System rebooted without a clean shutdown due to power loss, crash, or hardware failure.",
+    "keywords": ["event id 41", "kernel power 41", "unexpected shutdown"],
+    "quickFixes": [
+      "Check power supply, battery health, and disable Fast Startup.",
+      "Update BIOS, chipset, and power-related drivers.",
+      "Check Event ID 1001 for BSOD details and run hardware diagnostics."
+    ]
+  },
+  {
+    "id": "event-6008",
+    "eventId": "6008",
+    "title": "Unexpected Shutdown",
+    "meaning": "Windows detected that the previous shutdown was improper.",
+    "keywords": ["event id 6008", "unexpected shutdown"],
+    "quickFixes": [
+      "Check for power cuts, overheating, or forced shutdowns.",
+      "Review System logs before this event occurred.",
+      "Run SFC scan and ensure Windows is fully updated."
+    ]
+  },
+  {
+    "id": "event-20",
+    "eventId": "20",
+    "title": "Windows Update Failed",
+    "meaning": "A Windows Update installation failed.",
+    "keywords": ["event id 20", "windows update failed"],
+    "quickFixes": [
+      "Run Windows Update Troubleshooter and restart.",
+      "Reset Windows Update cache (SoftwareDistribution and catroot2).",
+      "Run DISM RestoreHealth and SFC, then retry update."
+    ]
+  },
+  {
+    "id": "event-31",
+    "eventId": "31",
+    "title": "Windows Update Servicing Error",
+    "meaning": "Windows Update failed due to internal servicing issues.",
+    "keywords": ["event id 31", "windows update error"],
+    "quickFixes": [
+      "Check error code in Windows Update logs.",
+      "Repair system image using DISM RestoreHealth.",
+      "Reboot system and retry update with stable internet."
+    ]
+  },
+  {
+    "id": "event-7",
+    "eventId": "7",
+    "title": "Disk Bad Block Detected",
+    "meaning": "The disk has detected bad sectors.",
+    "keywords": ["event id 7", "bad block disk error"],
+    "quickFixes": [
+      "Run chkdsk /f /r and reboot.",
+      "Check disk SMART health status.",
+      "Backup data immediately and replace disk if errors continue."
+    ]
+  },
+  {
+    "id": "event-51",
+    "eventId": "51",
+    "title": "Disk I/O Error",
+    "meaning": "Windows encountered an input/output error on the disk.",
+    "keywords": ["event id 51", "disk io error"],
+    "quickFixes": [
+      "Check disk cables or SSD health.",
+      "Update storage controller drivers.",
+      "Run disk check and monitor for recurring errors."
+    ]
+  },
+  {
+    "id": "event-129",
+    "eventId": "129",
+    "title": "Disk Reset Due to Timeout",
+    "meaning": "Storage device was reset after a timeout.",
+    "keywords": ["event id 129", "disk timeout reset"],
+    "quickFixes": [
+      "Update storage, chipset, and firmware drivers.",
+      "Disable Link Power Management in power settings.",
+      "Check disk health and replace if necessary."
+    ]
+  },
+  {
+    "id": "event-219",
+    "eventId": "219",
+    "title": "Driver Failed to Load",
+    "meaning": "A device driver failed to load during system startup.",
+    "keywords": ["event id 219", "driver failed to load"],
+    "quickFixes": [
+      "Identify the failing driver from event details.",
+      "Update or reinstall the affected driver.",
+      "Remove unused or conflicting devices."
+    ]
+  },
+  {
+    "id": "event-4101",
+    "eventId": "4101",
+    "title": "Display Driver Reset",
+    "meaning": "Graphics driver stopped responding and was restarted.",
+    "keywords": ["event id 4101", "display driver stopped responding"],
+    "quickFixes": [
+      "Update or reinstall GPU driver using clean install.",
+      "Check GPU temperatures and power supply.",
+      "Disable overclocking and test system stability."
+    ]
+  },
+  {
+    "id": "event-4625",
+    "eventId": "4625",
+    "title": "Failed Login Attempt",
+    "meaning": "A login attempt failed due to wrong credentials or policy restrictions.",
+    "keywords": ["event id 4625", "failed login"],
+    "quickFixes": [
+      "Verify username and password.",
+      "Check account lockout or password expiry policy.",
+      "Review Security logs for repeated attempts."
+    ]
+  },
+  {
+    "id": "event-7000",
+    "eventId": "7000",
+    "title": "Service Failed to Start",
+    "meaning": "A Windows service failed during startup.",
+    "keywords": ["event id 7000", "service failed to start"],
+    "quickFixes": [
+      "Identify the service name from event details.",
+      "Check service dependencies and permissions.",
+      "Reinstall or repair the related application."
+    ]
+  },
+  {
+    "id": "event-7031",
+    "eventId": "7031",
+    "title": "Service Crashed",
+    "meaning": "A Windows service terminated unexpectedly.",
+    "keywords": ["event id 7031", "service crashed"],
+    "quickFixes": [
+      "Restart the service and monitor behavior.",
+      "Update or reinstall service-related software.",
+      "Check Application logs for related errors."
+    ]
+  },
+  {
+    "id": "event-1001",
+    "eventId": "1001",
+    "title": "BugCheck (Blue Screen)",
+    "meaning": "System crashed with a Blue Screen error.",
+    "keywords": ["event id 1001", "bsod bugcheck"],
+    "quickFixes": [
+      "Note the stop code and failing driver.",
+      "Update drivers, BIOS, and Windows.",
+      "Run memory and disk diagnostics."
+    ]
+  },
+  {
     "id": "70bcd781",
     "publishDate": "Mon, 02 Feb 2026 04:38:00 +0000",
     "title": "Windows Update Taking Forever on SSD – Why & How to Fix (2025 Guide)",
@@ -399,6 +555,7 @@
   
 </body>
 </html>
+
 
 
 
